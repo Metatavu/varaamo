@@ -8,6 +8,14 @@ class Html extends Component {
     return `window.INITIAL_STATE = ${serialize(initialState)};`;
   }
 
+  renderGoogleAnalyticsCode(googleAnalyticsCode) {
+    if (!googleAnalyticsCode) {
+      return null;
+    }
+
+    return ( <input id="ga-tracking-code" type="hidden" value={googleAnalyticsCode} /> );
+  }
+
   renderAnalyticsCode(piwikSiteId) {
     if (!piwikSiteId) {
       return null;
@@ -55,6 +63,7 @@ class Html extends Component {
       initialState,
       isProduction,
       piwikSiteId,
+      googleAnalyticsCode,
     } = this.props;
     const initialStateHtml = this.getInitialStateHtml(initialState);
 
@@ -70,6 +79,7 @@ class Html extends Component {
         </head>
         <body>
           <div id="root" />
+          {this.renderGoogleAnalyticsCode(googleAnalyticsCode)}
           <script dangerouslySetInnerHTML={{ __html: initialStateHtml }} />
           <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.en-gb,Intl.~locale.fi,Intl.~locale.sv" />
           <script src={appScriptSrc} />
@@ -86,6 +96,7 @@ Html.propTypes = {
   initialState: PropTypes.object.isRequired,
   isProduction: PropTypes.bool.isRequired,
   piwikSiteId: PropTypes.string,
+  googleAnalyticsCode: PropTypes.string,
 };
 
 export default Html;

@@ -6,6 +6,7 @@ import { Provider } from 'react-intl-redux';
 import { browserHistory, Router } from 'react-router';
 import { createStore } from 'redux';
 import Immutable from 'seamless-immutable';
+import ReactGA from 'react-ga';
 
 import 'assets/styles/app.less';
 import 'assets/styles/customization/espoo/customization.less';
@@ -21,7 +22,18 @@ const finalState = Immutable(initialStoreState).merge(
   [initialServerState, initialIntlState], { deep: true }
 );
 const store = configureStore(finalState);
+const initializeGoogleAnalytics = () => {
+  const gaTrackingCodeElement = document.getElementById('ga-tracking-code');
+  const gaTrackingCode = gaTrackingCodeElement ? gaTrackingCodeElement.getAttribute('value') : null;
+  if (gaTrackingCode) {
+    ReactGA.initialize(gaTrackingCode);
+    browserHistory.listen((location) => {
+      ReactGA.pageview(`${location.pathname}${location.search}`);
+    });
+  }
+};
 
+initializeGoogleAnalytics();
 render(
   <Provider store={store}>
     <Router history={browserHistory}>

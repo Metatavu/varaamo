@@ -31,6 +31,7 @@ module.exports = {
   },
   isProduction,
   piwikSiteId: process.env.PIWIK_SITE_ID,
+  googleAnalyticsCode: process.env.GOOGLE_ANALYTICS,
   port,
   webpackStylesExtensions: ['css', 'less'],
 };

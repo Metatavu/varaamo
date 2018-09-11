@@ -25,6 +25,7 @@ function render(req, res) {
       initialState={initialState}
       isProduction={config.isProduction}
       piwikSiteId={config.piwikSiteId}
+      googleAnalyticsCode={config.googleAnalyticsCode}
     />
   );
   const html = `<!DOCTYPE html>${htmlContent}`;
