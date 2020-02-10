@@ -6,6 +6,7 @@ import nocache from 'nocache';
 
 import configurePassport from './configurePassport';
 import getAuthState from './getAuthState';
+import settings from '../../config/settings';
 
 const router = express.Router(); // eslint-disable-line new-cap
 const passport = configurePassport();
@@ -33,10 +34,10 @@ router.get('/login',
     req.session.next = req.query.next; // eslint-disable-line no-param-reassign
     next();
   },
-  passport.authenticate('helsinki'));
+  passport.authenticate(settings.AUTH_PROVIDER));
 
-router.get('/login/helsinki/return',
-  passport.authenticate('helsinki', { failureRedirect: '/login' }),
+router.get(`/login/${settings.AUTH_PROVIDER}/return`,
+  passport.authenticate(settings.AUTH_PROVIDER, { failureRedirect: '/login' }),
   (req, res) => {
     if (req.session.next) {
       const redirectUrl = req.session.next;

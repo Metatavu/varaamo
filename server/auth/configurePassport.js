@@ -53,7 +53,7 @@ function configureKeycloakStrategy() {
 }
 
 function configurePassport() {
-  const authProvider = settings.AUTH_PROVIDER || 'helsinki';
+  const authProvider = settings.AUTH_PROVIDER;
   let strategy = null;
 
   switch (authProvider) {
