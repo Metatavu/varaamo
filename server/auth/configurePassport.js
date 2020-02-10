@@ -30,9 +30,9 @@ function configureKeycloakStrategy() {
       clientID: settings.CLIENT_ID,
       clientSecret: settings.CLIENT_SECRET,
       callbackURL: settings.LOGIN_CALLBACK_URL || '/login/keycloak/return',
-      authorizationURL: `${url}/auth/realms/${realm}/protocol/openid-connect/auth`,
-      tokenURL: `${url}/auth/realms/${realm}/protocol/openid-connect/token`,
-      userInfoURL: `${url}/auth/realms/${realm}/protocol/openid-connect/userinfo`,
+      authorizationURL: `${url}/realms/${realm}/protocol/openid-connect/auth`,
+      tokenURL: `${url}/realms/${realm}/protocol/openid-connect/token`,
+      userInfoURL: `${url}/realms/${realm}/protocol/openid-connect/userinfo`,
     }, (accessToken, refreshToken, profileData, done) => {
       const profile = {
         id: profileData.keycloakId,
