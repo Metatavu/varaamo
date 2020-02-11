@@ -1,3 +1,4 @@
+import util from 'util';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import cookieSession from 'cookie-session';
@@ -51,7 +52,7 @@ router.get(`/login/${settings.AUTH_PROVIDER}/return`,
 router.get('/logout', (req, res) => {
   req.logOut();
   const redirectUrl = req.query.next || 'https://varaamo.hel.fi';
-  res.redirect(`https://api.hel.fi/sso/logout/?next=${redirectUrl}`);
+  res.redirect(util.format(settings.LOGOUT_URL, redirectUrl));
 });
 
 export default router;
