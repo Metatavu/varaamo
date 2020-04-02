@@ -53,8 +53,12 @@ function getSettings() {
       process.env.CUSTOM_MUNICIPALITY_OPTIONS,
     ),
     TIME_ZONE: process.env.TIME_ZONE || DEFAULT_TIME_ZONE,
+    AUTH_PROVIDER: process.env.AUTH_PROVIDER || 'helsinki',
     CLIENT_ID: process.env.CLIENT_ID,
     CLIENT_SECRET: process.env.CLIENT_SECRET,
+    LOGOUT_URL: process.env.LOGOUT_URL || "https://api.hel.fi/sso/logout/?next=%s",
+    KEYCLOAK_REALM: process.env.KEYCLOAK_REALM,
+    KEYCLOAK_URL: process.env.KEYCLOAK_URL,
     PROXY: process.env.PROXY,
     LOGIN_CALLBACK_URL:
       process.env.LOGIN_CALLBACK_URL || DEFAULT_LOGIN_CALLBACK_URL,
